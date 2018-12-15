@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currencies_array">
+        <item>USD   US Dollar</item>
+        <item>JPY   Japanase yen</item>
+        <item>BGN	Bulgarian lev</item>
+        <item>CZK	Czech koruna</item>
+        <item>DKK	Danish krone</item>
+        <item>GBP	Pound sterling</item>
+        <item>HUF	Hungarian forint</item>
+        <item>PLN	Polish zloty</item>
+        <item>RON	Romanian leu</item>
+        <item>SEK	Swedish krona</item>
+        <item>CHF	Swiss franc</item>
+        <item>ISK	Icelandic krona</item>
+        <item>NOK	Norwegian krone</item>
+        <item>HRK	Croatian kuna</item>
+        <item>RUB	Russian rouble</item>
+        <item>TRY	Turkish lira</item>
+        <item>AUD	Australian dollar</item>
+        <item>BRL	Brazilian real</item>
+        <item>CAD	Canadian dollar</item>
+        <item>CNY	Chinese yuan renminbi</item>
+        <item>HKD	Hong Kong dollar</item>
+        <item>IDR	Indonesian rupiah</item>
+        <item>ILS	Israeli shekel</item>
+        <item>INR	Indian rupee</item>
+        <item>KRW	South Korean won</item>
+        <item>MXN	Mexican peso</item>
+        <item>MYR	Malaysian ringgit</item>
+        <item>NZD	New Zealand dollar</item>
+        <item>PHP	Philippine piso</item>
+        <item>SGD	Singapore dollar</item>
+        <item>THB	Thai baht</item>
+        <item>ZAR	South African rand</item>
+    </string-array>
+</resources>
