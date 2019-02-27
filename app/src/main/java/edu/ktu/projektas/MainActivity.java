@@ -19,6 +19,10 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Random;
+
+
+import com.github.mikephil.charting.charts.LineChart;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.Random;
 
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -42,11 +47,13 @@ public class MainActivity extends AppCompatActivity{
     private EditText valueIn;
     private String cur1;
     private String cur2;
+    private ImageButton reverse;
 
 
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.mainactivitydesign);
+        //setContentView(R.layout.mainactivitydesign);
+        setContentView(R.layout.updateddesign);
         if(!isConnected(MainActivity.this))
             buildDialog(MainActivity.this).show();
         else {
@@ -65,11 +72,30 @@ public class MainActivity extends AppCompatActivity{
         spinnerIn.setAdapter(adapter);
         spinnerOut.setAdapter(adapter);
 
-        button = (ImageButton)findViewById(R.id.button);
+        button = (ImageButton)findViewById(R.id.convert);
+        reverse = (ImageButton) findViewById(R.id.reverse);
         button.setOnClickListener(exchangeCurrency);
+
+        //reverse.setOnClickListener(reverseCurrency);
 
         spinnerIn.setOnItemSelectedListener(getFirstValue);
         spinnerOut.setOnItemSelectedListener(getSecondValue);
+
+        reverse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spinnerIn=(Spinner) findViewById(R.id.spinnerOut);
+                spinnerOut= (Spinner)findViewById(R.id.spinnerIn);
+            }
+        });
+        /*LineChart chart = (LineChart) findViewById(R.id.chart);
+
+        int[] data = new int[20];
+        Random rng = new Random(100);
+
+        for(int i=0;i<data.length;i++){
+            data[i]= rng.nextInt();
+        }*/
 
     }
 
@@ -151,7 +177,7 @@ public class MainActivity extends AppCompatActivity{
         @Override
         protected String doInBackground(URL... urls){
             String value=null;
-            String url = "http://free.currencyconverterapi.com/api/v5/convert?q=" + cur1 + "_" + cur2 + "&compact=y";
+            String url = "https://free.currencyconverterapi.com/api/v6/convert?q="+cur1+"_"+cur2+"&compact=ultra&apiKey=64395b619a9dbe7217b4";
             try{
                 InputStream is = new URL(url).openStream();
                 System.out.println(url);
@@ -165,8 +191,8 @@ public class MainActivity extends AppCompatActivity{
                 System.out.println(jsonText);
                 JSONObject json = new JSONObject(jsonText);
                 System.out.println(json.toString());
-                value=json.getJSONObject(cur1+"_"+cur2).getString("val");
-                System.out.println(value);
+                value=json.getString(cur1+"_"+cur2);
+                //System.out.println(value);
                 is.close();
             }catch (JSONException e){
                 e.printStackTrace();
@@ -184,7 +210,7 @@ public class MainActivity extends AppCompatActivity{
             if(!myStr.isEmpty())
             {
                 number = valueIn.getText().toString();
-                System.out.println(number);
+                //System.out.println(number);
                 double converted = Double.parseDouble(number);
                 double val = Double.parseDouble(value);
                 if(val==0){
